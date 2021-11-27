@@ -29,7 +29,7 @@ export class EditBrandsComponent implements OnInit {
      }
 
      infoBrand = this.fb.group({
-      "nameBrand":["",
+      "nameBrand":["", 
       Validators.compose([
         Validators.required,
         Validators.minLength(2),

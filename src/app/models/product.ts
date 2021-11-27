@@ -6,12 +6,9 @@ export class Product{
   brand!: string;
   size!:number;
   amount!:number;
-  productImg1!:[
-
-    {productImg2:string,
-    productImg3:string
-    }
-  ];
+  productImg1!:string;
+  productImg2!:string;
+  productImg3!:string;
   status!: string;
   selling!: string;
   gender!: string;

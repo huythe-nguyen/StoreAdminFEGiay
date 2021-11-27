@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sales.component.scss']
 })
 export class SalesComponent implements OnInit {
+  sideBarOpen = true;
 
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
   constructor() { }
 
   ngOnInit() {

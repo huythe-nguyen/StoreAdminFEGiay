@@ -10,12 +10,21 @@ import { RestApiService } from 'src/app/services/rest-api.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
+  sideBarOpen = true;
+
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
   product!: Product[];
   btnDisabled= false;
   url='http://localhost:3000/api/v1/admin/product'
   deleteId!:string;
   confirmMessage='';
   key='';
+  size=5;
+  sizes=5;
+  page=1;
+  pages=1;
 
   confirmDeleteProduct(confirmDialog: TemplateRef<any>, id: string, productCode: string){
     this.confirmMessage = `Bạn thật sự muốn xóa sản phẩm này ${productCode}` ;
@@ -30,6 +39,22 @@ export class ProductComponent implements OnInit {
     if (keys!==''){
       this.key=keys;
       this.ngOnInit();
+    }
+  }
+Loadpage(pages:number){
+  console.log(pages)
+    if(pages>0){
+      this.page = pages;
+      this.pages=pages
+      this.ngOnInit()
+    }
+}
+Loadsize(sizes:number){
+  console.log(sizes)
+  if(sizes>4){
+    this.size=sizes;
+    this.sizes=sizes;
+    this.ngOnInit();
   }
 }
   constructor(private rest:RestApiService,
@@ -47,7 +72,7 @@ export class ProductComponent implements OnInit {
       this.data.error(error['message']);
     }) */
     if(this.key==''){
-      this.rest.get(this.url).then(data=>{
+      this.rest.gets(this.url,this.page, this.size).then(data=>{
         this.product =( data as {product: Product[]}).product;
         this.btnDisabled=false;
       })
@@ -64,6 +89,7 @@ export class ProductComponent implements OnInit {
       })
     }
   }
+  
   Search(){
     if(this.key==''){
       this.ngOnInit();

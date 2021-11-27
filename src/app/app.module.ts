@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -30,13 +29,38 @@ import { NewsComponent } from './news/news.component';
 import { AddNewsComponent } from './news/add-news/add-news.component';
 import { EditNewsComponent } from './news/edit-news/edit-news.component';
 import { MessageComponent } from './message/message.component';
+import { LoginComponent } from './login/login.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import { MatSliderModule } from '@angular/material/slider';
+
+
+import { ChartsModule } from 'ng2-charts';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireDatabaseModule } from "@angular/fire/database";
+import { environment } from "../environments/environment";
+import { ImageComponent } from './image/image.component';
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponentTest } from './dashboard/dashboardtest.component';
+import { DetailProfileComponent } from './profile/detail-profile/detail-profile.component';
+import { EditOderComponent } from './home/edit-oder/edit-oder.component';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    DashboardComponent,
+    ProfileComponent,
     SidenavComponent,
     SalesComponent,
     BrandsComponent,
@@ -48,7 +72,13 @@ import { MessageComponent } from './message/message.component';
     NewsComponent,
     AddNewsComponent,
     EditNewsComponent,
-    MessageComponent
+    MessageComponent,
+    LoginComponent,
+    DashboardComponentTest,
+    ImageComponent,
+    DetailProfileComponent,
+    EditOderComponent
+   
   ],
   imports: [
     BrowserModule,
@@ -65,6 +95,17 @@ import { MessageComponent } from './message/message.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
+    MatNativeDateModule,
+    MatSliderModule,
+    ChartsModule,
+    BsDropdownModule,
+    ButtonsModule,
+    CommonModule,
+    IonicModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [RestApiService,DataService

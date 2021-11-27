@@ -10,6 +10,11 @@ import { News } from '../models/news';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
+  sideBarOpen = true;
+
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
   news!: News[];
   btnDisabled= false;
   url='http://localhost:3000/api/v1/admin/new'

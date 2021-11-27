@@ -10,7 +10,11 @@ import { Brand } from '../models/brand';
   styleUrls: ['./brands.component.scss']
 })
 export class BrandsComponent implements OnInit {
+  sideBarOpen = true;
 
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
+  }
   brands!: Brand[];
   btnDisabled= false;
   url='http://localhost:3000/api/v1/admin/brand'

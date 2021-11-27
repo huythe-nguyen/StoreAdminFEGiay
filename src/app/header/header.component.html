@@ -4,6 +4,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <div class="row mr-2 ml-auto">
+     
       <ul class="row m-0 align-items-center">
         <li>
           <button
@@ -12,17 +13,18 @@
             class="user mt-2 d-flex align-items-center"
           >
             <img src="./assets/user.jpg" alt="" class="user-image mr-1 p-2" />
-
-           Admin
+            admin
             <mat-icon class="user-image-icon ml-1"
               >keyboard_arrow_down</mat-icon
             >
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>
+            <form>
+            <button mat-menu-item type="submit" (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
               Logout
             </button>
+          </form>
           </mat-menu>
         </li>
       </ul>

@@ -1,5 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Employee } from '../models/employee';
+import { DataService } from '../services/data.service';
+import { RestApiService } from '../services/rest-api.service';
 
 @Component({
   selector: 'app-header',
@@ -8,12 +11,29 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Output() toggleSidebarForMe: EventEmitter<any> = new EventEmitter();
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {}
+  refreshToken='';
+  employee:Employee
+  url='http://localhost:3000/api/v1/auth/logout'
+  constructor( private data: DataService,private router: Router
+    ,private rest:RestApiService) {
+    
+  }
+  ngOnInit(): void {
+  }
 
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
+  }
+  logout(){
+    const token = localStorage.getItem('tokens')
+    console.log(token)
+    this.refreshToken=token
+    console.log(this.refreshToken)
+    if(this.refreshToken){
+      this.rest.delete(this.url,this.refreshToken).then(data=>{
+      localStorage.clear();
+      this.router.navigate(['/login']);
+      })
+    }
   }
 }
