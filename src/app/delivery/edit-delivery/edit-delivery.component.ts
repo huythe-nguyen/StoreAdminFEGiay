@@ -1,20 +1,18 @@
-import { MessageComponent } from '../../message/message.component';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { DataService } from 'src/app/services/data.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Oder } from 'src/app/models/oder';
 import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-edit-oder',
-  templateUrl: './edit-oder.component.html',
-  styleUrls: ['./edit-oder.component.css']
+  selector: 'app-edit-delivery',
+  templateUrl: './edit-delivery.component.html',
+  styleUrls: ['./edit-delivery.component.css']
 })
-export class EditOderComponent implements OnInit {
+export class EditDeliveryComponent implements OnInit {
 
   doing=false;
   oder: Oder;
@@ -28,7 +26,6 @@ export class EditOderComponent implements OnInit {
   constructor(private modelService: NgbModal,
     private rest:RestApiService,
     private data: DataService,
-    private fb: FormBuilder,
     private router: Router,) {
       this.oder= new Oder;
 
@@ -55,7 +52,7 @@ export class EditOderComponent implements OnInit {
           this.doing=false;
           this.modelService.dismissAll();
           this.ngOnInit()
-          this.router.navigate(['/sale'])
+          this.router.navigate(['/dashboerd'])
         
       }).catch(error =>{
         this.doing =false;

@@ -71,10 +71,6 @@ export class HomeComponent implements OnInit {
         this.oder = (data as { oder: Oder[] }).oder;
         this.btnDisabled = false;
       })
-      this.rest.getOder(this.url, this.page, this.size, 'confimed').then(data => {
-        this.oder1 = (data as { oder: Oder[] }).oder;
-        this.btnDisabled = false;
-      })
       this.rest.getOder(this.url, this.page, this.size, 'No').then(data => {
         this.oder2 = (data as { oder: Oder[] }).oder;
         this.btnDisabled = false;

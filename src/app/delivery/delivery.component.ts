@@ -1,24 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Cart } from '../models/cart';
+import { Oder } from '../models/oder';
 import { DataService } from '../services/data.service';
 import { RestApiService } from '../services/rest-api.service';
 
 @Component({
-  selector: 'app-sales',
-  templateUrl: './sales.component.html',
-  styleUrls: ['./sales.component.scss']
+  selector: 'app-delivery',
+  templateUrl: './delivery.component.html',
+  styleUrls: ['./delivery.component.scss']
 })
-export class SalesComponent implements OnInit {
+export class DeliveryComponent implements OnInit {
   sideBarOpen = true;
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
-  cart!: Cart[];
+
+  
+  oder1!: Oder[];
+
   btnDisabled = false;
-  url = 'http://localhost:3000/api/v1/admin/cart'
-  url1 = 'http://localhost:3000/api/v1/admin/cart/search'
+  url = 'http://localhost:3000/api/v1/admin/oder'
   deleteId!: string;
   confirmMessage = '';
   key = '';
@@ -26,6 +29,7 @@ export class SalesComponent implements OnInit {
   sizes = 5;
   page = 1;
   pages = 1;
+ 
   constructor(private rest: RestApiService,
     private data: DataService,
     private modalService: NgbModal) {
@@ -56,16 +60,13 @@ export class SalesComponent implements OnInit {
   ngOnInit() {
     this.btnDisabled = true;
     if (this.key == '') {
-      this.rest.gets(this.url, this.page, this.size).then(data => {
-        this.cart = (data as { cart: Cart[] }).cart;
+      this.rest.getOder(this.url, this.page, this.size, 'confimed').then(data => {
+        this.oder1 = (data as { oder: Oder[] }).oder;
         this.btnDisabled = false;
       })
-        .catch(error => {
-          this.data.error(error['message']);
-        })
     } else {
       this.rest.search(this.url, this.key).then(data => {
-        this.cart = (data as { cart: Cart[] }).cart;
+        this.oder1 = (data as { oder: Oder[] }).oder;
         this.btnDisabled = false;
       })
         .catch(error => {

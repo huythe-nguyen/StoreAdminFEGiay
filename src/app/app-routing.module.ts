@@ -11,6 +11,7 @@ import { SalesComponent } from './sales/sales.component';
 import { DashboardComponentTest } from './dashboard/dashboardtest.component';
 import { ImageComponent } from './image/image.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DeliveryComponent } from './delivery/delivery.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponentTest },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'delivery', component: DeliveryComponent },
   { path: 'sale', component: SalesComponent },
   { path: 'brands', component: BrandsComponent },
   { path: 'product', component: ProductComponent },

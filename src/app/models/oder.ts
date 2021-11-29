@@ -12,5 +12,7 @@ export class Oder {
     status!:string;
     idCart!:string;
     idUser!:string;
+    price!:string;
+
   
   }

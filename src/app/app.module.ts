@@ -51,6 +51,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponentTest } from './dashboard/dashboardtest.component';
 import { DetailProfileComponent } from './profile/detail-profile/detail-profile.component';
 import { EditOderComponent } from './home/edit-oder/edit-oder.component';
+import { DetailCartComponent } from './sales/detail-cart/detail-cart.component';
+import { DeliveryComponent } from './delivery/delivery.component';
+import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 
 
 
@@ -77,7 +80,10 @@ import { EditOderComponent } from './home/edit-oder/edit-oder.component';
     DashboardComponentTest,
     ImageComponent,
     DetailProfileComponent,
-    EditOderComponent
+    EditOderComponent,
+    DetailCartComponent,
+    DeliveryComponent,
+    EditDeliveryComponent
    
   ],
   imports: [
