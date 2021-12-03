@@ -21,6 +21,10 @@ export class NewsComponent implements OnInit {
   deleteId!:string;
   confirmMessage='';
   key='';
+  size=5;
+  sizes=5;
+  page=1;
+  pages=1;
   confirmDeleteNew(confirmDialog: TemplateRef<any>, id: string, title: string){
     this.confirmMessage = `Bạn thật sự muốn xóa bai viet ${title}` ;
     this.deleteId =id;
@@ -37,6 +41,22 @@ export class NewsComponent implements OnInit {
       this.ngOnInit();
   }
 }
+Loadpage(pages:number){
+  console.log(pages)
+    if(pages>0){
+      this.page = pages;
+      this.pages=pages
+      this.ngOnInit()
+    }
+}
+Loadsize(sizes:number){
+  console.log(sizes)
+  if(sizes>4){
+    this.size=sizes;
+    this.sizes=sizes;
+    this.ngOnInit();
+  }
+}
   constructor(private rest:RestApiService,
     private data: DataService,
     private modalService: NgbModal) {
@@ -45,7 +65,7 @@ export class NewsComponent implements OnInit {
   ngOnInit() {
     this.btnDisabled=true;
     if(this.key==''){
-    this.rest.get(this.url).then(data=>{
+    this.rest.gets(this.url,this.page, this.size).then(data=>{
         this.news =( data as {news: News[]}).news;
         this.btnDisabled=false;
       })

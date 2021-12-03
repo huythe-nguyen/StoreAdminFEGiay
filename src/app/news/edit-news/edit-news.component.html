@@ -1,15 +1,16 @@
+
 <div id="newsEdit">
-  <form #productAddForm="ngForm" >
+  <form #productAddForm="ngForm" [formGroup]="infoNew">
     <ng-template #content let-c="close" let-d="dismiss">
       <div class="modal-header">
-        <h4 class="modal-title">Chỉnh sửa Bài Viết</h4>
+        <h4 class="modal-title">Chỉnh sửa bài viết</h4>
         <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <app-message></app-message>
-        <div *ngIf="doing" class="m-auto">
+        <div *ngIf="saving" class="m-auto">
           <h1 class="text-center display-3 mt-5">
             <i class="fas fa-spinner fa spin"></i> </h1>
         </div>
@@ -78,7 +79,7 @@
             </div>
             <div class="col-md-12">
               <div class="form-group" *ngIf="news.imgs">
-                <img style="height: 300px; width: 450px;"
+                <img style="height: 300px; width: 450px; "
                  [src]="news.imgs"
                 />
               </div>
@@ -90,7 +91,7 @@
             <div class="form-group">
               <label class="bmd-label-floating">Ngày đăng bài</label>
               <input
-                type="text" name="starDay" id="starDay"
+                type="date" name="starDay" id="starDay"
                 [(ngModel)]="news.starDay"
                 formControlName="starDay"
                 class="form-control"
@@ -105,7 +106,7 @@
             <div class="form-group">
               <label class="bmd-label-floating">Ngày gỡ bài đăng</label>
               <input
-                type="tesxt" name="endDay" id="endDay"
+                type="date" name="endDay" id="endDay"
                 [(ngModel)]="news.endDay"
                 [min]="news.starDay"
                 formControlName="endDay"
@@ -137,8 +138,9 @@
                  <i class="fa fa-check-circle" style="color:green;" *ngIf="infoNew.controls.state.valid"></i>
           </div>
 
-        </div>
       </div>
+      </div>
+      <app-message></app-message>
       <div class="modal-footer" *ngIf="infoNew.valid">
         <button type="submit" class="btn btn-primary pull-right" (click)="update()">Edit</button>
         <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>

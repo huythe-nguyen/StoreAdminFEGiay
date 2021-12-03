@@ -82,6 +82,11 @@
               </div>
             </div>
             <div class="col-md-12">
+              <div class="form-group" *ngIf="brand.imgs">
+                <img style="height: 300px; width: 450px; " [src]="brand.imgs" />
+              </div>
+            </div>
+            <div class="col-md-12">
               <label class="bmd-label-floating">Trạng thái</label>
               <select
                 name="state" id="state"

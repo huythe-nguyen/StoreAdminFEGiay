@@ -23,7 +23,7 @@ get(link:string){
 gets(link:string, page:number,size: number){
   let headers = this.getHeaders();
   if(headers instanceof HttpHeaders)
-    return this.http.get(link +'?page='+ page+'&&size='+size, {headers: headers}).toPromise();
+    return this.http.get(link +'?page='+ page +'&&size='+size, {headers: headers}).toPromise();
  return this.router.navigate(['/login'])
 }
 getOder(link:string, page:number,size: number, status: string){

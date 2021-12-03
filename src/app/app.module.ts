@@ -54,6 +54,7 @@ import { EditOderComponent } from './home/edit-oder/edit-oder.component';
 import { DetailCartComponent } from './sales/detail-cart/detail-cart.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
+import { FirebaseService } from './services/firebase.service';
 
 
 
@@ -84,7 +85,7 @@ import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.co
     DetailCartComponent,
     DeliveryComponent,
     EditDeliveryComponent
-   
+
   ],
   imports: [
     BrowserModule,
@@ -114,7 +115,7 @@ import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.co
     AngularFirestoreModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [RestApiService,DataService
+  providers: [RestApiService,DataService,FirebaseService
   ],
   bootstrap: [AppComponent],
 })

@@ -25,8 +25,8 @@ const routes: Routes = [
   { path: 'brands', component: BrandsComponent },
   { path: 'product', component: ProductComponent },
   { path: 'news', component: NewsComponent },
-  { path: 'up', component: ImageComponent }
- 
+  { path: 'upload', component: ImageComponent }
+
 ];
 
 @NgModule({

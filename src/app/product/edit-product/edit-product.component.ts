@@ -18,8 +18,7 @@ export class EditProductComponent implements OnInit {
 
   brand!: Brand[];
   btnDisabled= false;
-  url='http://localhost:3000/api/v1/admin/brand'
-
+  url='http://localhost:3000/api/v1/admin/brand/list'
   @Input("id")
   editId!: string;
 
@@ -44,9 +43,9 @@ export class EditProductComponent implements OnInit {
       "status":["",[Validators.required]],
       "selling":["",[Validators.required]],
       "priceSale":["",[Validators.required]],
-      "productImg1":["", Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")],
-      "productImg2":["", Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")],
-      "productImg3":["", Validators.pattern("(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?")],
+      "productImg1":[""],
+      "productImg2":[""],
+      "productImg3":[""],
       "description":["",[Validators.required]]
      })
 

@@ -18,6 +18,7 @@ export class ProductComponent implements OnInit {
   product!: Product[];
   btnDisabled= false;
   url='http://localhost:3000/api/v1/admin/product'
+
   deleteId!:string;
   confirmMessage='';
   key='';
@@ -89,7 +90,7 @@ Loadsize(sizes:number){
       })
     }
   }
-  
+
   Search(){
     if(this.key==''){
       this.ngOnInit();

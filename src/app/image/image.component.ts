@@ -1,114 +1,74 @@
-import { FormGroup } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize } from "rxjs/operators";
-import { ImageService } from 'src/app/shared/image.service';
+import { Component, OnInit, ViewChild  } from '@angular/core';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { AngularFirestore, AngularFirestoreCollection } from "@angular/fire/firestore";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
+export interface Test {
+  imagenDestacada: string;
+}
 @Component({
   selector: 'app-image',
   templateUrl: './image.component.html',
   styles: []
 })
 export class ImageComponent implements OnInit {
-  items: Observable<any[]>;
-  id: string;
-  url: []
-  imgSrc: string;
-  selectedImage: any = null;
-  isSubmitted: boolean;
-  itemsRef: AngularFirestoreCollection;
-  Caption = '';
 
-  formTemplate = new FormGroup({
-    caption: new FormControl('', Validators.required),
-    category: new FormControl(''),
-    imageUrl: new FormControl('', Validators.required)
-  })
 
-  constructor(private service: ImageService, private db: AngularFirestore, private storage: AngularFireStorage) {
-    this.itemsRef = db.collection('items')
-    this.items = this.itemsRef.valueChanges();
+  uploadPercent: Observable<number>;
+  downloadURL: Observable<string>;
+  selectedFile: FileList | null;
+  forma: FormGroup;
+  tests: Observable<any[]>;
+
+  constructor(fb: FormBuilder, private storage: AngularFireStorage, private afs: AngularFirestore, private fs: FirebaseService ) {
+    this.forma = fb.group ({
+      categoria: ['myCategoria'],
+
+    })
   }
 
   ngOnInit() {
-    this.resetForm();
+    this.mostrarImagenes();
   }
 
-  showPreview(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => this.imgSrc = e.target.result;
-      reader.readAsDataURL(event.target.files[0]);
-      this.selectedImage = event.target.files[0];
-    }
-    else {
-      this.imgSrc = '/assets/img/image_placeholder.jpg';
-      this.selectedImage = null;
-    }
+  detectFiles(event) {
+    this.selectedFile = event.target.files[0];
   }
-  onSubmit(formValue) {
-    this.isSubmitted = true;
-    if (this.formTemplate.valid) {
-      var filePath = `${formValue.category}/${this.selectedImage.name.split('.').slice(1, -1).join('.')}_${new Date().getTime()}`;
-      const fileRef = this.storage.ref(filePath);
-      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
-            formValue['imageUrl'] = url;
-            this.service.insertImageDetails(formValue);
-            this.resetForm();
+
+  uploadFile() {
+    const myTest = this.afs.collection('test').ref.doc();
+    console.log(myTest.id)
+
+    const file = this.selectedFile
+    const filePath = `${myTest.id}/name1`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, file);
+
+    this.uploadPercent = task.percentageChanges();
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().toPromise().then( (url) => {
+          this.downloadURL = url;
+
+          myTest.set({
+            categoria: this.forma.value.categoria,
+            imagenes : this.downloadURL,
+            myId : myTest.id
           })
-        })
-      ).subscribe();
-      console.log(filePath)
-      console.log(fileRef)
-      console.log(finalize)
-      this.itemsRef.add({
-        title: this.Caption
+
+          console.log( this.downloadURL )
+        }).catch(err=> { console.log(err) });
       })
-        .then( resp => {
-
-          const imageUrl = this.uploadFile(resp.id, this.selectedImage)
-
-          this.itemsRef.doc(resp.id).update({
-            id: resp.id,
-            imageUrl: [imageUrl] || null
-          })
-          this.id = resp.id;
-          console.log(imageUrl)
-          console.log(resp.id)
-        }).catch(error => {
-          console.log(error);
-        })
-    }
-  }
-  async uploadFile(id, file): Promise<any> {
-    if (file && file.length) {
-      try {
-        const task = await this.storage.ref('images').child(id).put(file[0])
-        return this.storage.ref(`images/${id}`).getDownloadURL().toPromise();
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
-  get formControls() {
-    return this.formTemplate['controls'];
+    )
+    .subscribe()
   }
 
-  resetForm() {
-    this.formTemplate.reset();
-    this.formTemplate.setValue({
-      caption: '',
-      imageUrl: '',
-      category: 'Animal'
-    });
-    this.imgSrc = '/assets/img/image_placeholder.jpg';
-    this.selectedImage = null;
-    this.isSubmitted = false;
+  mostrarImagenes() {
+    this.tests = this.fs.getTests();
   }
 
 }
