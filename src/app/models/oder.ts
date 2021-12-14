@@ -1,18 +1,14 @@
 export class Oder {
-    id!:string
-    lastName!: string;
-    firstName!: string;
-    email!:string;
-    phone!: string;
-    image!:string;
-    password!:string;
-    address!:string;
-    country!:string;
-    city!:string;
-    status!:string;
-    idCart!:string;
-    idUser!:string;
-    price!:string;
-
-  
+  id!: string;
+  userId!: string;
+  displayName!:string;
+  email!:string;
+  phone!:number;
+  address!:string;
+  state!:string;
+  products:any[] ;
+  total: number;
+  timeOrder: Date;
+  country:string;
+  city:string;
   }

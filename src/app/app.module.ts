@@ -76,7 +76,6 @@ import { FirebaseService } from './services/firebase.service';
     NewsComponent,
     AddNewsComponent,
     EditNewsComponent,
-    MessageComponent,
     LoginComponent,
     DashboardComponentTest,
     ImageComponent,
@@ -84,6 +83,7 @@ import { FirebaseService } from './services/firebase.service';
     EditOderComponent,
     DetailCartComponent,
     DeliveryComponent,
+    MessageComponent,
     EditDeliveryComponent
 
   ],

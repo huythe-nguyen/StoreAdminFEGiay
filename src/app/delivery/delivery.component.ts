@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Oder } from '../models/oder';
+import { Carts } from '../models/cart';
 import { DataService } from '../services/data.service';
 import { RestApiService } from '../services/rest-api.service';
 
@@ -17,8 +17,8 @@ export class DeliveryComponent implements OnInit {
     this.sideBarOpen = !this.sideBarOpen;
   }
 
-  
-  oder1!: Oder[];
+
+  oder3!: Carts[];
 
   btnDisabled = false;
   url = 'http://localhost:3000/api/v1/admin/oder'
@@ -29,7 +29,7 @@ export class DeliveryComponent implements OnInit {
   sizes = 5;
   page = 1;
   pages = 1;
- 
+
   constructor(private rest: RestApiService,
     private data: DataService,
     private modalService: NgbModal) {
@@ -61,12 +61,13 @@ export class DeliveryComponent implements OnInit {
     this.btnDisabled = true;
     if (this.key == '') {
       this.rest.getOder(this.url, this.page, this.size, 'confimed').then(data => {
-        this.oder1 = (data as { oder: Oder[] }).oder;
+        this.oder3 = (data as { oder: Carts[] }).oder;
         this.btnDisabled = false;
+        console.log(this.oder3);
       })
     } else {
       this.rest.search(this.url, this.key).then(data => {
-        this.oder1 = (data as { oder: Oder[] }).oder;
+        this.oder3 = (data as { oder: Carts[] }).oder;
         this.btnDisabled = false;
       })
         .catch(error => {
@@ -74,5 +75,5 @@ export class DeliveryComponent implements OnInit {
         })
     }
   }
-  
+
 }

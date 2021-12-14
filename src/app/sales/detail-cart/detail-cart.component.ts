@@ -5,8 +5,8 @@ import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@an
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { DataService } from 'src/app/services/data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Cart } from 'src/app/models/cart';
-import { Item } from 'src/app/models/cart';
+import { CartItem, Carts } from 'src/app/models/cart';
+
 
 
 @Component({
@@ -16,8 +16,8 @@ import { Item } from 'src/app/models/cart';
 })
 export class DetailCartComponent implements OnInit {
   doing= false;
-  cart: Cart;
-  item:Item;
+  cart: Carts;
+  itemCart: CartItem;
   url = 'http://localhost:3000/api/v1/admin/cart/detail'
   @Input("id")
   Id!: string;
@@ -26,7 +26,7 @@ export class DetailCartComponent implements OnInit {
     private rest:RestApiService,
     private data: DataService,
     private fb: FormBuilder,) {
-      this.cart= new Cart;
+      this.cart= new Carts;
 
      }
   ngOnInit() {
@@ -34,7 +34,7 @@ export class DetailCartComponent implements OnInit {
     this.rest.getOne(this.url,this.Id)
       .then(data =>{
         this.doing=false;
-        this.cart =(data as {cart: Cart}).cart;
+        this.cart =(data as {cart: Carts}).cart;
       }).catch(error =>{
         this.doing =false;
         this.data.error(error['message'])

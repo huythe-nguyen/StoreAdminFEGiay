@@ -33,7 +33,8 @@ export class AddProductComponent implements OnInit {
   saving=false;
   product: Product;
   url1='http://localhost:3000/api/v1/admin/product/add'
-
+  messerr:string
+  mess:string
   brands!: Brand[];
   btnDisabled= false;
   url2='http://localhost:3000/api/v1/admin/brand/list'
@@ -91,10 +92,12 @@ ngOnInit() {
       .then(data =>{
         this.saving=false;
         this.data.success('Product is saved');
+        this.modelService.dismissAll();
+        window.alert('Sản phẩm đã được thêm')
         this.ngOnInit();
       }).catch(error =>{
         this.saving =false;
-        this.data.error('Mã sản phẩm đã tồn tại')
+        this.messerr='Mã sản phẩm đã tồn tại'
       });
       this.mostrarImagenes();
   }

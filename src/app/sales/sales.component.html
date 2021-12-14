@@ -54,18 +54,18 @@
                       <table class="table">
                         <thead class="text-primary">
                           <th>No</th>
-                          <th>Mã giỏ hàng</th>
-                          <th>Mã thành viên</th>
+                          <th>Mã đơn hàng</th>
+                          <th>Tên Khách hàng</th>
                           <th>Thành tiền</th>
                           <th></th>
                         </thead>
                         <tbody>
                           <tr *ngFor="let item of cart, let i = index ">
                             <td>{{i+1}}</td>
-                            <td>{{item._id}}</td>
-                            <td>{{item.UserID}}</td>
-                            <td class="text-primary">{{item.subTotal|currency: 'USD':'symbol':'1.1'}}</td>
-                            <td><app-detail-cart [id]="item._id"></app-detail-cart></td>
+                            <td>{{item.codeOder}}</td>
+                            <td>{{item.displayName}}</td>
+                            <td class="text-primary">{{item.total|number: '2.'}}</td>
+                            <td><app-detail-cart [id]="item.id"></app-detail-cart></td>
                           </tr>
                         </tbody>
                       </table>

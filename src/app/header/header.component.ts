@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   url='http://localhost:3000/api/v1/auth/logout'
   constructor( private data: DataService,private router: Router
     ,private rest:RestApiService) {
-    
+
   }
   ngOnInit(): void {
   }
@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
   }
+  name = localStorage.getItem('name')
   logout(){
     const token = localStorage.getItem('tokens')
     console.log(token)

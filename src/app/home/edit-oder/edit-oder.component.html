@@ -14,23 +14,13 @@
             <i class="fas fa-spinner fa spin"></i> </h1>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <div class="form-group">
-              <label class="bmd-label-floating">Họ</label>
+              <label class="bmd-label-floating">Tên khách hàng</label>
               <input
-                type="text" name="firstName" id="firstName"
-                [(ngModel)]="oder.firstName"
-    
-                class="form-control"
-              />
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <label class="bmd-label-floating">Tên</label>
-              <input
-                type="text" name="lastName" id="lastName"
-                [(ngModel)]="oder.lastName"
+                type="text" name="displayName" id="displayName"
+                value="{{oder.displayName}}"
+
                 class="form-control"
               />
             </div>
@@ -42,7 +32,7 @@
               <label class="bmd-label-floating">E-mail</label>
               <input
                 type="text" name="email" id="email"
-                [(ngModel)]="oder.email"
+                value="{{oder.email}}"
                 class="form-control"
               />
             </div>
@@ -52,8 +42,7 @@
               <label class="bmd-label-floating">Phone</label>
               <input
                 type="text" name="phone" id="phone"
-                [(ngModel)]="oder.phone"
-                
+                value="{{oder.phone}}"
                 class="form-control"
               />
             </div>
@@ -63,21 +52,21 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="bmd-label-floating">Address</label>
-                <input type="text" name="address" id="address" [(ngModel)]="oder.address"
+                <input type="text" name="address" id="address" value="{{oder.address}}"
                    class="form-control" />
               </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                 <label class="bmd-label-floating">Country</label>
-                <input type="text" name="country" id="country" [(ngModel)]="oder.country"
+                <input type="text" name="country" id="country" value="{{oder.country}}"
                    class="form-control" />
               </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                 <label class="bmd-label-floating">City</label>
-                <input type="text" name="city" id="city" [(ngModel)]="oder.city"
+                <input type="text" name="city" id="city" value="{{oder.city}}"
                   class="form-control" />
               </div>
             </div>
@@ -88,8 +77,7 @@
               <label class="bmd-label-floating">Ngày đặt hàng</label>
               <input
                 type="text" name="dateOder" id="dateOder"
-                [(ngModel)]="oder.dateOder"
-               
+                value="{{oder.timeOrder|date}}"
                 class="form-control"
               />
             </div>
@@ -99,8 +87,8 @@
               <label class="bmd-label-floating">Mã giỏ hàng</label>
               <input
                 type="text" name="idCart" id="idCart"
-                [(ngModel)]="oder.idCart"
-                
+                value="{{oder.id}}"
+
                 class="form-control"
               />
             </div>
@@ -109,8 +97,18 @@
             <div class="form-group">
               <label class="bmd-label-floating">Tổng tiền </label>
               <input
-                type="text" name="price" id="price"
-                [(ngModel)]="oder.price"
+                type="text" name="total" id="total"
+                value="{{oder.total}}"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label class="bmd-label-floating">Mã đơn hàng </label>
+              <input
+                type="text" name="total" id="total"
+                [(ngModel)]="oder.codeOder"
                 class="form-control"
               />
             </div>
@@ -121,13 +119,13 @@
             <label class="bmd-label-floating">Trạng thái</label>
             <select
               name="status" id="status"
-              [(ngModel)]="oder.status"
-              
+              [(ngModel)]="oder.state"
+
               class="custom-select mb-3"
             >
-              <option value="unconfimed" selected>Chưa xác nhận</option>
+              <option value="unconfirmed" selected>Chưa xác nhận</option>
               <option value="confimed">Xác nhận và giao hàng</option>
-              <option value="No">Huy đơn hàng</option>
+              <option value="cancel">Huy đơn hàng</option>
             </select>
           </div>
 

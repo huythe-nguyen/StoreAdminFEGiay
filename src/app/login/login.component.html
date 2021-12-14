@@ -1,3 +1,4 @@
+<app-message></app-message>
 <div class="limiter">
   <div class="container-login100">
     <div class="wrap-login100 p-t-85 p-b-20">
@@ -14,7 +15,8 @@
           <label > password</label>
           <input class="input100" type="password" name="password" [(ngModel)]="employee.password">
         </div>
-
+        <app-message></app-message>
+        <span style="color: red;">{{mess}}</span>
         <div class="container-login100-form-btn">
           <button class="login100-form-btn" (click)='login()'>
             Login

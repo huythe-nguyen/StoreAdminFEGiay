@@ -1,17 +1,22 @@
-import { ArrayType } from "@angular/compiler";
-
-export class Item{
-    _id!: string
-    productId!:string
-    quantity!:number
-    price!:number
-    total!:number;
-  }
-  
-export class Cart{
-    _id!: string
-    UserID!:string
-    items: [Item]
-    subTotal!:number
-  }
-  
+export class CartItem {
+  id!: string;
+  size: string
+  product: string
+  colour: string;
+  quantity: number;
+  productCode: string;
+  productName: string;
+  price:string;
+  Total:string
+}
+export class Carts{
+  id!: string;
+  userId!: string;
+  products:[CartItem] ;
+  total: number;
+  email:string;
+  displayName:string;
+  timeOrder:Date;
+  codeOder:string;
+  state:string
+}

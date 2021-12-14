@@ -22,21 +22,22 @@
                   <table class="table">
                     <thead class="text-primary">
                       <th>No</th>
-                      <th>Mã đơn hàng</th>
                       <th>Mã giỏ hàng</th>
                       <th>Tên khách hàng</th>
+                      <th>Ngày đặt hàng</th>
                       <th>Thành tiền</th>
                       <th></th>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let item of oder1, let i = index ">
+                      <tr *ngFor="let item of oder3, let i = index ">
                         <td>{{i+1}}</td>
                         <td>{{item.id}}</td>
-                        <td>{{item.idCart}}</td>
-                        <td>{{item.lastName}}</td>
-                        <td class="text-primary">{{item.price}}</td>
+                        <td>{{item.displayName}}</td>
+                        <td>{{item.timeOrder|date}}</td>
+                        <td class="text-primary">{{item.total|number: '2.'}}</td>
                         <td>
                           <app-edit-delivery [id]="item.id" (updateFinished)="finishAndAlert($event)">
+
                           </app-edit-delivery>
                         </td>
                       </tr>

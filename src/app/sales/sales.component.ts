@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Cart } from '../models/cart';
+import { Carts } from '../models/cart';
 import { DataService } from '../services/data.service';
 import { RestApiService } from '../services/rest-api.service';
 
@@ -15,7 +15,7 @@ export class SalesComponent implements OnInit {
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
-  cart!: Cart[];
+  cart!: Carts[];
   btnDisabled = false;
   url = 'http://localhost:3000/api/v1/admin/cart'
   url1 = 'http://localhost:3000/api/v1/admin/cart/search'
@@ -57,7 +57,7 @@ export class SalesComponent implements OnInit {
     this.btnDisabled = true;
     if (this.key == '') {
       this.rest.gets(this.url, this.page, this.size).then(data => {
-        this.cart = (data as { cart: Cart[] }).cart;
+        this.cart = (data as { cart: Carts[] }).cart;
         this.btnDisabled = false;
       })
         .catch(error => {
@@ -65,7 +65,7 @@ export class SalesComponent implements OnInit {
         })
     } else {
       this.rest.search(this.url, this.key).then(data => {
-        this.cart = (data as { cart: Cart[] }).cart;
+        this.cart = (data as { cart: Carts[] }).cart;
         this.btnDisabled = false;
       })
         .catch(error => {
@@ -73,5 +73,5 @@ export class SalesComponent implements OnInit {
         })
     }
   }
-  
+
 }

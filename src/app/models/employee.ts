@@ -8,5 +8,6 @@ export class Employee {
   address!:string;
   country!:string;
   city!:string;
+  role!:string;
 
 }

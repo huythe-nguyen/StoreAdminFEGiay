@@ -5,8 +5,8 @@ import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@an
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { DataService } from 'src/app/services/data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Oder } from 'src/app/models/oder';
 import { Router } from '@angular/router';
+import { Carts } from 'src/app/models/cart';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 export class EditOderComponent implements OnInit {
 
   doing=false;
-  oder: Oder;
+  oder: Carts;
   url1='http://localhost:3000/api/v1/admin/oder/edit'
   @Input("id")
   editId!: string;
@@ -30,16 +30,16 @@ export class EditOderComponent implements OnInit {
     private data: DataService,
     private fb: FormBuilder,
     private router: Router,) {
-      this.oder= new Oder;
+      this.oder= new Carts;
 
      }
-     
+
   ngOnInit() {
     this.doing=true;
     this.rest.getOne(this.url1,this.editId)
       .then(data =>{
         this.doing=false;
-        this.oder =(data as {oder: Oder}).oder;
+        this.oder =(data as {oder: Carts}).oder;
       }).catch(error =>{
         this.doing =false;
         this.data.error(error['message'])
@@ -56,12 +56,11 @@ export class EditOderComponent implements OnInit {
           this.modelService.dismissAll();
           this.ngOnInit()
           this.router.navigate(['/sale'])
-        
       }).catch(error =>{
         this.doing =false;
         this.data.error(error['message'])
       });
-     
+
     }
 
 }

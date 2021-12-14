@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Oder } from '../models/oder';
+import { Carts } from '../models/cart';
 import { DataService } from '../services/data.service';
 import { RestApiService } from '../services/rest-api.service';
 
@@ -17,9 +17,9 @@ export class HomeComponent implements OnInit {
     this.sideBarOpen = !this.sideBarOpen;
   }
 
-  oder!: Oder[];
-  oder1!: Oder[];
-  oder2!: Oder[];
+  oder!: Carts[];
+  oder1!: Carts[];
+  oder2!: Carts[];
   btnDisabled = false;
   url = 'http://localhost:3000/api/v1/admin/oder'
   deleteId!: string;
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   sizes = 5;
   page = 1;
   pages = 1;
- 
+
   constructor(private rest: RestApiService,
     private data: DataService,
     private modalService: NgbModal) {
@@ -67,17 +67,17 @@ export class HomeComponent implements OnInit {
        this.data.error(error['message']);
      }) */
     if (this.key == '') {
-      this.rest.getOder(this.url, this.page, this.size, 'unconfimed').then(data => {
-        this.oder = (data as { oder: Oder[] }).oder;
+      this.rest.getOder(this.url, this.page, this.size, 'unconfirmed').then(data => {
+        this.oder = (data as { oder: Carts[] }).oder;
         this.btnDisabled = false;
       })
-      this.rest.getOder(this.url, this.page, this.size, 'No').then(data => {
-        this.oder2 = (data as { oder: Oder[] }).oder;
+      this.rest.getOder(this.url, this.page, this.size, 'cancel').then(data => {
+        this.oder2 = (data as { oder: Carts[] }).oder;
         this.btnDisabled = false;
       })
     } else {
       this.rest.search(this.url, this.key).then(data => {
-        this.oder = (data as { oder: Oder[] }).oder;
+        this.oder = (data as { oder: Carts[] }).oder;
         this.btnDisabled = false;
       })
         .catch(error => {
@@ -85,5 +85,5 @@ export class HomeComponent implements OnInit {
         })
     }
   }
-  
+
 }

@@ -1,9 +1,10 @@
+import { Carts } from 'src/app/models/cart';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit, Input, Output, EventEmitter, TemplateRef } from '@angular/core';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { DataService } from 'src/app/services/data.service';
-import { Oder } from 'src/app/models/oder';
+
 import { Router } from '@angular/router';
 
 
@@ -15,7 +16,7 @@ import { Router } from '@angular/router';
 export class EditDeliveryComponent implements OnInit {
 
   doing=false;
-  oder: Oder;
+  oder: Carts;
   url1='http://localhost:3000/api/v1/admin/oder/edit'
   @Input("id")
   editId!: string;
@@ -27,16 +28,16 @@ export class EditDeliveryComponent implements OnInit {
     private rest:RestApiService,
     private data: DataService,
     private router: Router,) {
-      this.oder= new Oder;
+      this.oder= new Carts;
 
      }
-     
+
   ngOnInit() {
     this.doing=true;
     this.rest.getOne(this.url1,this.editId)
       .then(data =>{
         this.doing=false;
-        this.oder =(data as {oder: Oder}).oder;
+        this.oder =(data as {oder: Carts}).oder;
       }).catch(error =>{
         this.doing =false;
         this.data.error(error['message'])
@@ -52,13 +53,16 @@ export class EditDeliveryComponent implements OnInit {
           this.doing=false;
           this.modelService.dismissAll();
           this.ngOnInit()
-          this.router.navigate(['/dashboerd'])
-        
+          if(this.oder.state=='cancel'){
+            this.router.navigate(['/home'])
+          }else{
+            this.router.navigate(['/dashboard'])
+          }
       }).catch(error =>{
         this.doing =false;
         this.data.error(error['message'])
       });
-     
+
     }
 
 }

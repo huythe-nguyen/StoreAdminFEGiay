@@ -25,13 +25,13 @@
                 <th>Thành tiền</th>
               </thead>
               <tbody>
-                <tr *ngFor="let item of cart.items, let i = index ">
+                <tr *ngFor="let item of cart.products, let i = index ">
                   <td>{{i+1}}</td>
-                  <td>{{item.productId}}</td>
-                  <td></td>
+                  <td>{{item.product}}</td>
+                  <td> {{item.productName}}</td>
                   <td>{{item.quantity}}</td>
-                  <td>{{item.price |currency}}</td>
-                  <td class="text-primary">{{item.total|currency: 'USD':'symbol':'1.1'}}</td>
+                  <td>{{item.price |number: '2.'}}</td>
+                  <td class="text-primary">{{item.Total|number: '2.'}}</td>
                 </tr>
               </tbody>
             </table>
@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-4">
               <div class="form-group">
-              <input type="text" name="subTotal" id="subTotal" [ngModel]="cart.subTotal" value="subTotal |currency: 'USD':'symbol':'1.1'"
+              <input type="text" name="subTotal" id="subTotal" class="text-primary" [ngModel]="cart.total|number: '2.'" value="subTotal |currency: 'USD':'symbol':'1.1'"
                 class="form-control" />
             </div>
           </div>
