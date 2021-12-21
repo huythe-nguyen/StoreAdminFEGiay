@@ -6,6 +6,7 @@ import { RestApiService } from 'src/app/services/rest-api.service';
 import { DataService } from 'src/app/services/data.service';
 
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -23,10 +24,11 @@ export class EditDeliveryComponent implements OnInit {
 
   @Output()
   updateFinished: EventEmitter<string> = new EventEmitter<string>();
-
+  
   constructor(private modelService: NgbModal,
     private rest:RestApiService,
     private data: DataService,
+    private fb: FormBuilder,
     private router: Router,) {
       this.oder= new Carts;
 
@@ -54,7 +56,7 @@ export class EditDeliveryComponent implements OnInit {
           this.modelService.dismissAll();
           this.ngOnInit()
           if(this.oder.state=='cancel'){
-            this.router.navigate(['/home'])
+            this.router.navigate(['/cancel'])
           }else{
             this.router.navigate(['/dashboard'])
           }

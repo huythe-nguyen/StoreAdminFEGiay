@@ -6,23 +6,23 @@ import { DataService } from '../services/data.service';
 import { RestApiService } from '../services/rest-api.service';
 
 @Component({
-  selector: 'app-delivery',
-  templateUrl: './delivery.component.html',
-  styleUrls: ['./delivery.component.scss']
+  selector: 'app-cancel',
+  templateUrl: './cancel.component.html',
+  styleUrls: ['./cancel.component.scss']
 })
-export class DeliveryComponent implements OnInit {
+export class CancelComponent implements OnInit {
   sideBarOpen = true;
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
   }
 
-
-  oder3!: Carts[];
-
+  oder!: Carts[];
+  oder1!: Carts[];
+  oder2!: Carts[];
   btnDisabled = false;
   url = 'http://localhost:3000/api/v1/admin/oder'
-  url1='http://localhost:3000/api/v1/admin/oder?state=confimed'
+  url1='http://localhost:3000/api/v1/admin/oder?state=cancel'
   deleteId!: string;
   confirmMessage = '';
   key = '';
@@ -61,14 +61,14 @@ export class DeliveryComponent implements OnInit {
   ngOnInit() {
     this.btnDisabled = true;
     if (this.key ==='') {
-      this.rest.getOder(this.url, this.page, this.size, 'confimed').then(data => {
-        this.oder3 = (data as { oder: Carts[] }).oder;
+      this.rest.getOder(this.url, this.page, this.size, 'cancel').then(data => {
+        this.oder2 = (data as { oder: Carts[] }).oder;
         this.btnDisabled = false;
-        console.log(this.oder3);
+        console.log(this.oder2);
       })
     } else {
       this.rest.searchOrder(this.url1, this.key).then(data => {
-        this.oder3 = (data as { oder: Carts[] }).oder;
+        this.oder2 = (data as { oder: Carts[] }).oder;
         this.btnDisabled = false;
       })
         .catch(error => {

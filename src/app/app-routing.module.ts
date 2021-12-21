@@ -12,6 +12,8 @@ import { DashboardComponentTest } from './dashboard/dashboardtest.component';
 import { ImageComponent } from './image/image.component';
 import { ProfileComponent } from './profile/profile.component';
 import { DeliveryComponent } from './delivery/delivery.component';
+import { CancelComponent } from './cancels/cancel.component';
+import { SuceessComponent } from './order-suceess/suceess.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -25,7 +27,8 @@ const routes: Routes = [
   { path: 'brands', component: BrandsComponent },
   { path: 'product', component: ProductComponent },
   { path: 'news', component: NewsComponent },
-  { path: 'upload', component: ImageComponent }
+  { path: 'cancel', component: CancelComponent },
+  { path: 'suceess', component: SuceessComponent }
 
 ];
 

@@ -55,6 +55,10 @@ import { DetailCartComponent } from './sales/detail-cart/detail-cart.component';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { EditDeliveryComponent } from './delivery/edit-delivery/edit-delivery.component';
 import { FirebaseService } from './services/firebase.service';
+import { CancelComponent } from './cancels/cancel.component';
+import { DetailCancelComponent } from './cancels/detail-cancel/detail-oder.component';
+import { SuceessComponent } from './order-suceess/suceess.component';
+import { DetailSuceessComponent } from './order-suceess/detail-Suceess/detail-oder.component';
 
 
 
@@ -84,7 +88,11 @@ import { FirebaseService } from './services/firebase.service';
     DetailCartComponent,
     DeliveryComponent,
     MessageComponent,
-    EditDeliveryComponent
+    EditDeliveryComponent,
+    CancelComponent,
+    DetailCancelComponent,
+    SuceessComponent,
+    DetailSuceessComponent
 
   ],
   imports: [

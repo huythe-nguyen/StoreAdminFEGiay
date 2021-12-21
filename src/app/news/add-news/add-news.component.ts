@@ -36,7 +36,7 @@ export class AddNewsComponent implements OnInit {
   }
   save(){
     this.saving=true;
-
+    console.log(this.news.starDay)
     this.rest.post(this.url1,this.news)
       .then(data =>{
         this.saving=false;

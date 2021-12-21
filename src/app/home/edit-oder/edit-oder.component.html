@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-9">
             <div class="form-group">
               <label class="bmd-label-floating">E-mail</label>
               <input
@@ -37,7 +37,7 @@
               />
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-3">
             <div class="form-group">
               <label class="bmd-label-floating">Phone</label>
               <input
@@ -49,21 +49,21 @@
           </div>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
               <div class="form-group">
                 <label class="bmd-label-floating">Address</label>
                 <input type="text" name="address" id="address" value="{{oder.address}}"
                    class="form-control" />
               </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="form-group">
                 <label class="bmd-label-floating">Country</label>
                 <input type="text" name="country" id="country" value="{{oder.country}}"
                    class="form-control" />
               </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="form-group">
                 <label class="bmd-label-floating">City</label>
                 <input type="text" name="city" id="city" value="{{oder.city}}"
@@ -72,14 +72,30 @@
             </div>
           </div>
           <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-6">
             <div class="form-group">
               <label class="bmd-label-floating">Ngày đặt hàng</label>
               <input
-                type="text" name="dateOder" id="dateOder"
-                value="{{oder.timeOrder|date}}"
+                type="date" name="dateOder" id="dateOder"
+                [value]="oder.timeOrder|date: 'yyyy-MM-dd'"
                 class="form-control"
               />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label class="bmd-label-floating">Ngày dự kiến nhận hàng: {{oder.timeSucess|date: 'yyyy-MM-dd'}}</label>
+              <input
+                type="date" name="timeSucess" id="timeSucess"
+                [(ngModel)]="oder.timeSucess"
+                [min]="oder.timeOrder|date: 'yyyy-MM-dd'"
+              class="form-control"
+              />
+            <!-- <small id="timeSucessHelp" class="form-text text-muted err"
+            *ngIf="!info.get('timeSucess')?.valid && info.get('timeSucess')?.touched " >
+              <i class="fa fa-times-circle" style="color:firebrick;"></i>
+               vui lòng chọn ngày</small>
+               <i class="fa fa-check-circle" style="color:green;" *ngIf="info.controls.timeSucess.valid"></i> -->
             </div>
           </div>
           <div class="col-md-12">
@@ -88,7 +104,6 @@
               <input
                 type="text" name="idCart" id="idCart"
                 value="{{oder.id}}"
-
                 class="form-control"
               />
             </div>
@@ -107,11 +122,30 @@
             <div class="form-group">
               <label class="bmd-label-floating">Mã đơn hàng </label>
               <input
-                type="text" name="total" id="total"
+                type="text" name="codeOder" id="codeOder"
                 [(ngModel)]="oder.codeOder"
-                class="form-control"
+              class="form-control"
               />
+            <!-- <small id="nameBrandHelp" class="form-text text-muted err"
+            *ngIf="!info.get('codeOder')?.valid && info.get('codeOder')?.touched " >
+              <i class="fa fa-times-circle" style="color:firebrick;"></i>
+               vui lòng nhập mã đơn hàng</small>
+               <i class="fa fa-check-circle" style="color:green;" *ngIf="info.controls.codeOder.valid"></i> -->
             </div>
+          </div>
+          <div class="col-md-3">
+            <label class="bmd-label-floating">Thanh toán</label>
+          </div>
+          <div class="col-md-9">
+            <select
+              name="status" id="status"
+              [(ngModel)]="oder.state"
+
+              class="custom-select mb-3"
+            >
+              <option value="confimed" >Đã thanh toán</option>
+              <option value="unconfirmed" selected>thanh toán khi nhận hàng</option>
+            </select>
           </div>
         </div>
         <div class="row">
@@ -128,7 +162,13 @@
               <option value="cancel">Huy đơn hàng</option>
             </select>
           </div>
-
+        </div>
+        <div class="row" *ngIf="oder.state=='cancel'">
+          <div class="col-md-12">
+            <label class="bmd-label-floating">Lí do Hủy đơn</label>
+            <textarea style="height: 300px;" type="text" name="note" id="note"
+              formControlName="note" [(ngModel)]="oder.note" class="form-control"></textarea>
+          </div>
         </div>
       </div>
       <div class="modal-footer" >

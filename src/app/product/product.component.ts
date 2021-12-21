@@ -65,13 +65,6 @@ Loadsize(sizes:number){
 
   ngOnInit() {
     this.btnDisabled=true;
-   /*  this.rest.get(this.url).then(data=>{
-      this.product =( data as {product: Product[]}).product;
-      this.btnDisabled=false;
-    })
-    .catch(error=>{
-      this.data.error(error['message']);
-    }) */
     if(this.key==''){
       this.rest.gets(this.url,this.page, this.size).then(data=>{
         this.product =( data as {product: Product[]}).product;

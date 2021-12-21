@@ -7,7 +7,8 @@ export class CartItem {
   productCode: string;
   productName: string;
   price:string;
-  Total:string
+  Total:string;
+
 }
 export class Carts{
   id!: string;
@@ -17,6 +18,8 @@ export class Carts{
   email:string;
   displayName:string;
   timeOrder:Date;
+  timeSucess:Date;
   codeOder:string;
-  state:string
+  state:string;
+  note:string;
 }

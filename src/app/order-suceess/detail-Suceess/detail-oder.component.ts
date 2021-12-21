@@ -10,11 +10,11 @@ import { Carts } from 'src/app/models/cart';
 
 
 @Component({
-  selector: 'app-edit-oder',
-  templateUrl: './edit-oder.component.html',
-  styleUrls: ['./edit-oder.component.css']
+  selector: 'app-detail-suceess',
+  templateUrl: './detail-oder.component.html',
+  styleUrls: ['./detail-oder.component.css']
 })
-export class EditOderComponent implements OnInit {
+export class DetailSuceessComponent implements OnInit {
 
   doing=false;
   oder: Carts;
@@ -34,10 +34,6 @@ export class EditOderComponent implements OnInit {
 
      }
 
-    //  info = this.fb.group({
-    //   "timeSucess":["",[Validators.required]],
-    //   "codeOder":["",[Validators.required,Validators.minLength(2)]]
-    // })
   ngOnInit() {
     this.doing=true;
     this.rest.getOne(this.url1,this.editId)
@@ -52,24 +48,5 @@ export class EditOderComponent implements OnInit {
   open(content: TemplateRef<any>){
     this.modelService.open(content, {ariaDescribedBy: 'modal-basic-title'});
   }
-  update(){
-    this.doing=true;
-    console.log(this.oder.timeSucess)
-    this.rest.put(this.url1,this.editId,this.oder)
-      .then(data =>{
-          this.doing=false;
-          this.modelService.dismissAll();
-          this.ngOnInit()
-          if(this.oder.state=='cancel'){
-            this.router.navigate(['/cancel'])
-          }else{
-            this.router.navigate(['/sale'])
-          }
-      }).catch(error =>{
-        this.doing =false;
-        this.data.error(error['message'])
-      });
-
-    }
 
 }

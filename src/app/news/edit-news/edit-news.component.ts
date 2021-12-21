@@ -36,8 +36,8 @@ export class EditNewsComponent implements OnInit {
       "codeTitle":["",[Validators.required,Validators.minLength(2),]],
       "description":["",[Validators.required,Validators.min(3),Validators.max(50)]],
       "imgs":[""],
-      "starDay":["",[Validators.required]],
-      "endDay":["",[Validators.required]],
+      "starDay":[""],
+      "endDay":[""],
       "state":["",[Validators.required]],
     })
   ngOnInit() {
@@ -56,7 +56,7 @@ export class EditNewsComponent implements OnInit {
   }
   update(){
     this.doing=true;
-
+    console.log(this.news.endDay)
     this.rest.put(this.url1,this.editId,this.news)
       .then(data =>{
         this.doing=false;

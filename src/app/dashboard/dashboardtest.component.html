@@ -17,11 +17,19 @@
           <!-- Page Content -->
           <div id="page-content-wrapper">
             <div class="container-fluid px-4">
+              <ul class="pagination">
+                <li style="margin-left: 80%;"><a class="page-link">Sort: </a></li>
+                <select class="page-link" [(ngModel)]="days" (click)="Loadday(days)" >
+                  <option value=0>1 day</option>
+                  <option value=7>7 day</option>
+                  <option value=30>30 day</option>
+                </select>
+              </ul>
               <div class="row g-3 my-2">
                 <div class="col-md-3">
                   <div class="p-3  shadow-sm d-flex justify-content-around align-items-center rounded" style="background-color: rgb(50, 50, 247);color: aliceblue;">
                     <div>
-                      <h3 class="fs-2">720</h3>
+                      <h3 class="fs-2">{{number}}</h3>
                       <p class="fs-5">Products</p>
                     </div>
                     <i class="fas fa-gift fs-1 primary-text border rounded-full secondary-bg p-3"></i>
@@ -42,7 +50,7 @@
                   <div class="p-3  shadow-sm d-flex justify-content-around align-items-center rounded" style="background-color: rgb(50, 50, 247);color: aliceblue;">
                     <div>
                       <h3 class="fs-2">{{count}}</h3>
-                      <p class="fs-5">Delivery</p>
+                      <p class="fs-5">Cancel</p>
                     </div>
                     <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                   </div>
@@ -51,10 +59,10 @@
                 <div class="col-md-3">
                   <div class="p-3  shadow-sm d-flex justify-content-around align-items-center rounded" style="background-color: rgb(50, 50, 247);color: aliceblue;">
                     <div>
-                      <h3 class="fs-2">%25</h3>
-                      <p class="fs-5">Increase</p>
+                      <h3 class="fs-2">{{count2}}</h3>
+                      <p class="fs-5">Success</p>
                     </div>
-                    <i class="fas fa-chart-line fs-1 primary-text border rounded-full secondary-bg p-3"></i>
+                    <i class="fas fa-truck fs-1 primary-text border rounded-full secondary-bg p-3"></i>
                   </div>
                 </div>
               </div>

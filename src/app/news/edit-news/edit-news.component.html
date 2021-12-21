@@ -91,10 +91,11 @@
             <div class="form-group">
               <label class="bmd-label-floating">Ngày đăng bài</label>
               <input
-                type="date" name="starDay" id="starDay"
-                [(ngModel)]="news.starDay"
-                formControlName="starDay"
-                class="form-control"
+              type="date" name="starDay" id="starDay"
+              [(ngModel)]="news.starDay"
+              value="{{news.starDay | date: 'yyyy-MM-dd'}}"
+              formControlName="starDays"
+              class="form-control"
               />
               <small id="nameBrandHelp" class="form-text text-muted err"  *ngIf="!infoNew.get('starDay')?.valid && infoNew.get('starDay')?.touched " >
                 <i class="fa fa-times-circle" style="color:firebrick;"></i>
@@ -109,7 +110,7 @@
                 type="date" name="endDay" id="endDay"
                 [(ngModel)]="news.endDay"
                 [min]="news.starDay"
-                formControlName="endDay"
+                [value]="news.endDay | date: 'yyyy-MM-dd'"
                 class="form-control"
               />
               <small id="nameBrandHelp" class="form-text text-muted err"  *ngIf="!infoNew.get('endDay')?.valid && infoNew.get('endDay')?.touched " >
