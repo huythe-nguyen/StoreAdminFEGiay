@@ -11,15 +11,15 @@
         <div class="content">
           <div class="container-fluid">
             <!---->
-            <div class="alert alert-success">
+            <!-- <div class="alert alert-success">
               <span>THÔNG TIN THÀNH VIÊN</span>
-            </div>
+            </div> -->
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-tabs card-header-primary">
                   <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
-                      <span class="nav-tabs-title">Tìm kiếm thành viên</span>
+                      <h3 class="nav-tabs-title">Thông tin thành viên</h3>
                     </div>
                   </div>
                 </div>
@@ -38,7 +38,7 @@
                               (ngModelChange)="Search()"
                               placeholder="search"> -->
                             <input type="text" [(ngModel)]="key" name="key" class="form-control"
-                              placeholder="Nhập mã sản phẩm" />
+                              placeholder="Nhập..." />
                             <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="search(key)">
                               <i class="material-icons">search</i>
                               <div class="ripple-container"></div>

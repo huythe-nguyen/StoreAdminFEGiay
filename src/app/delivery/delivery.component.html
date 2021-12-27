@@ -14,8 +14,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-primary">
-                <h4 class="card-title">Đơn hàng đang giao</h4>
-                <p class="card-category">Here is a subtitle for this table</p>
+                <h3 class="card-title">Đơn hàng đang giao</h3>
               </div>
               <div class="container mt-3">
                 <form action="/action_page.php">
@@ -63,6 +62,7 @@
                         </td>
                       </tr>
                     </tbody>
+                    <div *ngIf="oder3.length==0" style="margin-left: 50%;"> Không có đơn hàng đang được giao</div>
                   </table>
                 </div>
                 <nav aria-label="Page navigation example">

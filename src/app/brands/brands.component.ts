@@ -22,10 +22,11 @@ export class BrandsComponent implements OnInit {
   deleteId!:string;
   confirmMessage='';
   key='';
-  size=5;
-  sizes=5;
-  page=1;
-  pages=1;
+  // size=5;
+  // sizes=5;
+  // page=1;
+  // pages=1;
+  mess='';
   confirmDeleteBrand(confirmDialog: TemplateRef<any>, id: string, nameBrand: string){
     this.confirmMessage = `Bạn thật sự muốn xóa thương hiệu ${nameBrand}` ;
     this.deleteId =id;
@@ -46,40 +47,46 @@ export class BrandsComponent implements OnInit {
     private data: DataService,
     private modalService: NgbModal) {
      }
-     Loadpage(pages:number){
-      console.log(pages)
-        if(pages>0){
-          this.page = pages;
-          this.pages=pages
-          this.ngOnInit()
-        }
-    }
-    Loadsize(sizes:number){
-      console.log(sizes)
-      if(sizes>4){
-        this.size=sizes;
-        this.sizes=sizes;
-        this.ngOnInit();
-      }
-    }
+    //  Loadpage(pages:number){
+    //   console.log(pages)
+    //     if(pages>0){
+    //       this.page = pages;
+    //       this.pages=pages
+    //       this.ngOnInit()
+    //     }
+    // }
+    // Loadsize(sizes:number){
+    //   console.log(sizes)
+    //   if(sizes>4){
+    //     this.size=sizes;
+    //     this.sizes=sizes;
+    //     this.ngOnInit();
+    //   }
+    // }
 
   ngOnInit() {
     this.btnDisabled=true;
     if(this.key==''){
-    this.rest.gets(this.url,this.page,this.size).then(data=>{
+    this.rest.get(this.url).then(data=>{
         this.brands =( data as {brands: Brand[]}).brands;
         this.btnDisabled=false;
+
       })
       .catch(error=>{
-        this.data.error('Lỗi');
+        this.data.error(error['message']);
+        this.btnDisabled=false;
       })
+      this.mess=this.data.message
+      // const types=this.data.messageType
+      // console.log(this.data.message)
+      // console.log(this.data.messageType)
     }else{
       this.rest.search(this.url,this.key).then(data=>{
         this.brands =( data as {brands: Brand[]}).brands;
         this.btnDisabled=false;
       })
       .catch(error=>{
-        this.data.error('lỗi');
+        this.data.error(error['message']);
       })
     }
   }

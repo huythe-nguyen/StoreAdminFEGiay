@@ -17,8 +17,8 @@ export class SalesComponent implements OnInit {
   }
   cart!: Carts[];
   btnDisabled = false;
-  url = 'http://localhost:3000/api/v1/admin/cart'
-  url1 = 'http://localhost:3000/api/v1/admin/cart/search'
+  url = 'http://localhost:3000/api/v1/admin/cart/confimed'
+  url1 = 'http://localhost:3000/api/v1/admin/cart'
   deleteId!: string;
   confirmMessage = '';
   key = '';
@@ -64,7 +64,7 @@ export class SalesComponent implements OnInit {
           this.data.error(error['message']);
         })
     } else {
-      this.rest.search(this.url, this.key).then(data => {
+      this.rest.search(this.url1, this.key).then(data => {
         this.cart = (data as { cart: Carts[] }).cart;
         this.btnDisabled = false;
       })

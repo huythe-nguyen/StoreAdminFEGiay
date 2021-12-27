@@ -84,7 +84,7 @@
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label class="bmd-label-floating">Ngày dự kiến nhận hàng: {{oder.timeSucess|date: 'yyyy-MM-dd'}}</label>
+              <label class="bmd-label-floating">Ngày dự kiến nhận hàng:</label>
               <input
                 type="date" name="timeSucess" id="timeSucess"
                 [(ngModel)]="oder.timeSucess"
@@ -149,8 +149,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-3">
             <label class="bmd-label-floating">Trạng thái</label>
+          </div>
+          <div class="col-md-9">
             <select
               name="status" id="status"
               [(ngModel)]="oder.state"

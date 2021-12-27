@@ -11,15 +11,15 @@
         <div class="content">
           <div class="container-fluid">
             <!---->
-            <!-- <div class="alert alert-success">
+            <div class="alert alert-success">
               <span>BÀI VIẾT ĐÃ ĐĂNG</span>
-            </div> -->
+            </div>
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header card-header-tabs card-header-primary">
                   <div class="nav-tabs-navigation">
                     <div class="nav-tabs-wrapper">
-                      <h3 class="nav-tabs-title">BÀI VIẾT</h3>
+                      <span class="nav-tabs-title">BÀI VIẾT</span>
                     </div>
                   </div>
                 </div>
@@ -52,18 +52,15 @@
                           </button>
 
                           </div>
-
+                          <div>
+                            <app-add-discount></app-add-discount>
+                          </div>
                         </div>
                       </div>
                     </form>
+                    <app-message></app-message>
                       <div class="card-body" >
                         <div class="table-responsive">
-                          <div class="alert alert-success" *ngIf="mess!=''">
-                            <span>{{mess}}</span>
-                          </div>
-                          <div>
-                            <app-add-news (savingFinshed)="finishAndAlert($event)"></app-add-news>
-                          </div>
                           <table class="table">
                             <thead class="text-primary">
                               <th>No</th>
@@ -72,22 +69,22 @@
                               <th>Mô tả</th>
                               <th>Ngày bắt đầu</th>
                               <th>Ngày kết thúc</th>
-                              <th>Trạng thái</th>
+                              <th>Discount</th>
                               <th></th>
                             </thead>
                             <tbody>
-                              <tr *ngFor="let item of news,let i =index">
+                              <tr *ngFor="let item of discount,let i =index">
                                 <td>{{ i+1 }}</td>
-                                <td>{{ item.codeTitle }}</td>
-                                <td style="width: 150px;">{{ item.title }}</td>
+                                <td>{{ item.code }}</td>
+                                <td style="width: 150px;">{{ item.name }}</td>
                                 <td style="width: 300px;">{{ item.description }}</td>
                                 <td>{{ item.starDay |date }}</td>
                                 <td>{{ item.endDay |date }}</td>
-                                <td>{{ item.state }}</td>
+                                <td>{{ item.discount }}</td>
                                 <td>
-                                 <app-edit-news [id]="item.id" (updateFinished)="finishAndAlert($event)">
+                                 <app-edit-discount [id]="item.id" (updateFinished)="finishAndAlert($event)">
 
-                                 </app-edit-news>
+                                 </app-edit-discount>
 
                                  <a (click)="confirmDeleteNew(content, item.id,item.title)"
                                  class="btn btn-sm btn-outline-danger">
@@ -98,7 +95,7 @@
                              </tbody>
                            </table>
                          </div>
-                         <!-- <nav aria-label="Page navigation example">
+                         <nav aria-label="Page navigation example">
                           <ul class="pagination">
                             <li class="page-item" (click)="Loadpage(pages-1)"><a class="page-link">Previous</a></li>
                             <input class="page-link" style="width: 50px;" type="number" name="pages" [(ngModel)]="pages"
@@ -111,7 +108,7 @@
                               <option value=15>15</option>
                             </select>
                           </ul>
-                        </nav> -->
+                        </nav>
                        </div>
                    </div>
                  </div>

@@ -59,6 +59,9 @@ import { CancelComponent } from './cancels/cancel.component';
 import { DetailCancelComponent } from './cancels/detail-cancel/detail-oder.component';
 import { SuceessComponent } from './order-suceess/suceess.component';
 import { DetailSuceessComponent } from './order-suceess/detail-Suceess/detail-oder.component';
+import { DiscountComponent } from './discount/discount.component';
+import { AddDiscountComponent } from './discount/add-discount/add-discount.component';
+import { EditDiscountComponent } from './discount/edit-discount/edit-discount.component';
 
 
 
@@ -92,7 +95,11 @@ import { DetailSuceessComponent } from './order-suceess/detail-Suceess/detail-od
     CancelComponent,
     DetailCancelComponent,
     SuceessComponent,
-    DetailSuceessComponent
+    DetailSuceessComponent,
+    DiscountComponent,
+    AddDiscountComponent,
+    EditDiscountComponent
+
 
   ],
   imports: [

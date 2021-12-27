@@ -78,14 +78,13 @@ export class EditProductComponent implements OnInit {
     this.rest.put(this.url1,this.editId,this.product)
       .then(data =>{
         this.doing=false;
-        this.updateFinished.emit('product is update')
+        this.updateFinished.emit('Cập nhật sản phẩm '+this.product.productName+' thành công')
         this.modelService.dismissAll();
-        window.alert('Cập nhật thành công')
         this.product = new Product();
         this.ngOnInit();
       }).catch(error =>{
         this.doing =false;
-        this.data.error(error['lỗi'])
+        this.data.error('cập nhật thất bại')
       });
 
   }

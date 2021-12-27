@@ -33,6 +33,8 @@
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "angularfire2": "^5.4.2",
     "chart.js": "^2.9.3",
+    "exceljs": "^4.3.0",
+    "file-saver": "^2.0.5",
     "firebase": "^7.24.0",
     "ionic": "^5.4.16",
     "ionic-angular": "^3.9.10",
@@ -41,6 +43,7 @@
     "ngx-bootstrap": "^7.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "xlsx": "^0.17.4",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

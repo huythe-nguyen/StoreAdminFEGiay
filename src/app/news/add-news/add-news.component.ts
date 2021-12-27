@@ -1,5 +1,5 @@
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { News } from 'src/app/models/news';
 import { RestApiService } from 'src/app/services/rest-api.service';
 import { DataService } from 'src/app/services/data.service';
@@ -14,6 +14,9 @@ export class AddNewsComponent implements OnInit {
   saving=false;
   news: News;
   url1='http://localhost:3000/api/v1/admin/new/add'
+  @Output()
+  savingFinshed: EventEmitter<string>= new EventEmitter<string>();
+
   constructor(private modelService: NgbModal,
     private rest:RestApiService,
     private data: DataService,
@@ -40,7 +43,8 @@ export class AddNewsComponent implements OnInit {
     this.rest.post(this.url1,this.news)
       .then(data =>{
         this.saving=false;
-        this.data.success('new is saved');
+        this.savingFinshed.emit('Đã thêm bài viết: ' + this.news.title)
+        this.modelService.dismissAll();
         this.ngOnInit()
       }).catch(error =>{
         this.saving =false;
