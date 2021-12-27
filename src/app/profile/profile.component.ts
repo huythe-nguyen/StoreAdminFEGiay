@@ -11,6 +11,7 @@ import { RestApiService } from '../services/rest-api.service';
 })
 export class ProfileComponent implements OnInit {
   sideBarOpen = true;
+  loading: boolean = true;
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
@@ -31,12 +32,14 @@ export class ProfileComponent implements OnInit {
 
   }
   search(keys: string) {
+    this.loading = true;
     if (keys !== '') {
       this.key = keys;
       this.ngOnInit();
     }
   }
   Loadpage(pages: number) {
+    this.loading = true;
     console.log(pages)
     if (pages > 0) {
       this.page = pages;
@@ -45,6 +48,7 @@ export class ProfileComponent implements OnInit {
     }
   }
   Loadsize(sizes:number){
+    this.loading = true;
     console.log(sizes)
     if(sizes>4){
       this.size=sizes;
@@ -63,6 +67,7 @@ export class ProfileComponent implements OnInit {
      }) */
     if (this.key == '') {
       this.rest.gets(this.url, this.page, this.size).then(data => {
+        this.loading = false;
         this.employee = (data as { employee: Employee[] }).employee;
         this.btnDisabled = false;
       })
@@ -71,6 +76,7 @@ export class ProfileComponent implements OnInit {
         })
     } else {
       this.rest.search(this.url, this.key).then(data => {
+        this.loading = false;
         this.employee = (data as { employee: Employee[] }).employee;
         this.btnDisabled = false;
       })
@@ -79,5 +85,5 @@ export class ProfileComponent implements OnInit {
         })
     }
   }
-  
+
 }

@@ -12,6 +12,7 @@ import * as fs from 'file-saver';
 })
 export class ProductComponent implements OnInit {
   sideBarOpen = true;
+  loading: boolean = true;
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
@@ -39,12 +40,14 @@ export class ProductComponent implements OnInit {
     })
   }
   search(keys: string){
+    this.loading = true;
     if (keys!==''){
       this.key=keys;
       this.ngOnInit();
     }
   }
 Loadpage(pages:number){
+  this.loading = true;
   console.log(pages)
     if(pages>0){
       this.page = pages;
@@ -53,6 +56,7 @@ Loadpage(pages:number){
     }
 }
 Loadsize(sizes:number){
+  this.loading = true;
   console.log(sizes)
   if(sizes>4){
     this.size=sizes;
@@ -69,6 +73,7 @@ Loadsize(sizes:number){
     this.btnDisabled=true;
     if(this.key==''){
       this.rest.gets(this.url,this.page, this.size).then(data=>{
+        this.loading = false;
         this.product =( data as {product: Product[]}).product;
         this.btnDisabled=false;
       })
@@ -78,6 +83,7 @@ Loadsize(sizes:number){
       this.mess=this.data.message
     }else{
       this.rest.search(this.url,this.key).then(data=>{
+        this.loading = false;
         this.product =( data as {product: Product[]}).product;
         this.btnDisabled=false;
       })
@@ -88,6 +94,7 @@ Loadsize(sizes:number){
   }
 
   Search(){
+    this.loading = true;
     if(this.key==''){
       this.ngOnInit();
     }else{

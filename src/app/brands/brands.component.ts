@@ -11,6 +11,7 @@ import { Brand } from '../models/brand';
 })
 export class BrandsComponent implements OnInit {
   sideBarOpen = true;
+  loading: boolean = true;
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
@@ -68,6 +69,7 @@ export class BrandsComponent implements OnInit {
     this.btnDisabled=true;
     if(this.key==''){
     this.rest.get(this.url).then(data=>{
+      this.loading = false;
         this.brands =( data as {brands: Brand[]}).brands;
         this.btnDisabled=false;
 
@@ -82,6 +84,7 @@ export class BrandsComponent implements OnInit {
       // console.log(this.data.messageType)
     }else{
       this.rest.search(this.url,this.key).then(data=>{
+        this.loading = false;
         this.brands =( data as {brands: Brand[]}).brands;
         this.btnDisabled=false;
       })
@@ -91,6 +94,7 @@ export class BrandsComponent implements OnInit {
     }
   }
   Search(){
+    this.loading = true;
     if(this.key==''){
       this.ngOnInit();
     }else{

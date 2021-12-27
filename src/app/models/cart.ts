@@ -26,5 +26,6 @@ export class Carts{
   codeOder:string;
   state:string;
   note:string;
+  stateOrder: string;
   updatedAt:Date;
 }

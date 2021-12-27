@@ -62,6 +62,9 @@
                         </div>
                         <div class="alert alert-success" *ngIf="mess!=''">
                           <span>{{mess}}</span>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
                         <table class="table">
                           <thead class="text-primary">
@@ -74,7 +77,12 @@
                             <th>Giá giảm</th>
                             <th></th>
                           </thead>
-                          <tbody>
+                          <div class="text-center w-100"  *ngIf="loading">
+                            <div class="spinner-border" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
+                          </div>
+                          <tbody *ngIf="!loading">
                             <tr *ngFor="let item of product">
                               <td>{{ item.productCode }}</td>
                               <td>{{ item.productName }}</td>

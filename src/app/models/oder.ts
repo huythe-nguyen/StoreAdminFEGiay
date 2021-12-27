@@ -11,4 +11,5 @@ export class Oder {
   timeOrder: Date;
   country:string;
   city:string;
+  stateOrder: string;
   }

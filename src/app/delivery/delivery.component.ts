@@ -12,6 +12,7 @@ import { RestApiService } from '../services/rest-api.service';
 })
 export class DeliveryComponent implements OnInit {
   sideBarOpen = true;
+  loading: boolean = true;
 
   sideBarToggler() {
     this.sideBarOpen = !this.sideBarOpen;
@@ -37,12 +38,14 @@ export class DeliveryComponent implements OnInit {
 
   }
   search(keys: string) {
+    this.loading = true;
     if (keys !== '') {
       this.key = keys;
       this.ngOnInit();
     }
   }
   Loadpage(pages: number) {
+    this.loading = true;
     console.log(pages)
     if (pages > 0) {
       this.page = pages;
@@ -51,6 +54,7 @@ export class DeliveryComponent implements OnInit {
     }
   }
   Loadsize(sizes:number){
+    this.loading = true;
     console.log(sizes)
     if(sizes>4){
       this.size=sizes;
@@ -62,12 +66,14 @@ export class DeliveryComponent implements OnInit {
     this.btnDisabled = true;
     if (this.key ==='') {
       this.rest.getOder(this.url, this.page, this.size, 'confimed').then(data => {
+        this.loading = false;
         this.oder3 = (data as { oder: Carts[] }).oder;
         this.btnDisabled = false;
         console.log(this.oder3);
       })
     } else {
       this.rest.searchOrder(this.url1, this.key).then(data => {
+        this.loading = false;
         this.oder3 = (data as { oder: Carts[] }).oder;
         this.btnDisabled = false;
       })
